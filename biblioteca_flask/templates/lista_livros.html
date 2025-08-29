@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Livros</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{{ url_for('home') }}" class="menu-btn">Menu Inicial</a>
+            <a href="{{ url_for('cadastrar') }}" class="menu-btn">Cadastrar Livro</a>
+        </nav>
+    </header>
+
+    <h1>Lista de Livros</h1>
+
+    <form method="GET" style="text-align:center; margin-bottom:20px;">
+        <input type="text" name="busca" placeholder="Buscar por título" value="{{ busca }}">
+        <button type="submit" class="menu-btn">Buscar</button>
+    </form>
+
+    <ul>
+        {% for livro in livros %}
+        <li>
+            <strong>{{ livro.titulo }}</strong> | {{ livro.autor }} | {{ livro.ano }} | {{ livro.genero }} | Quantidade: {{ livro.quantidade }}
+            {% if livro.observacao %} | Obs: {{ livro.observacao }} {% endif %}
+
+            <div class="ul-btn-container">
+                <a href="{{ url_for('editar', index=loop.index0) }}" class="editar-btn">Editar</a>
+                <a href="{{ url_for('remover', index=loop.index0) }}" class="remover-btn">Remover</a>
+            </div>
+        </li>
+        {% else %}
+        <li>Nenhum livro cadastrado.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+

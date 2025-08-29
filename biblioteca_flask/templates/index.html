@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Biblioteca - Menu Inicial</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{{ url_for('home') }}" class="menu-btn">Menu Inicial</a>
+            <a href="{{ url_for('cadastrar') }}" class="menu-btn">Cadastrar Livro</a>
+            <a href="{{ url_for('lista_livros') }}" class="menu-btn">Lista de Livros</a>
+        </nav>
+    </header>
+
+    <h1>Bem-vindo à Biblioteca</h1>
+    <p style="text-align:center;">Escolha uma opção no menu acima.</p>
+</body>
+</html>
+

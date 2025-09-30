@@ -36,6 +36,30 @@
 
         <button type="submit" class="menu-btn">Salvar Alterações</button>
         <a href="{{ url_for('lista_livros') }}" class="menu-btn">Voltar para Lista</a>
+  
+        <label>Estrelas:</label>
+        <div class="estrelas">
+            <input type="radio" id="estrela5" name="estrela" value="5" {% if livro.estrela == 5 %}checked{% endif %}>
+            <label for="estrela5">⭐</label>
+
+            <input type="radio" id="estrela4" name="estrela" value="4" {% if livro.estrela == 4 %}checked{% endif %}>
+            <label for="estrela4">⭐</label>
+
+            <input type="radio" id="estrela3" name="estrela" value="3" {% if livro.estrela == 3 %}checked{% endif %}>
+            <label for="estrela3">⭐</label>
+
+            <input type="radio" id="estrela2" name="estrela" value="2" {% if livro.estrela == 2 %}checked{% endif %}>
+            <label for="estrela2">⭐</label>
+
+            <input type="radio" id="estrela1" name="estrela" value="1" {% if livro.estrela == 1 %}checked{% endif %}>
+            <label for="estrela1">⭐</label>
+        </div>
+
+        <label>Observação:</label>
+        <textarea name="observacao" rows="3">{{ livro.observacao }}</textarea>
+
+        <button type="submit" class="menu-btn">Salvar Alterações</button>
+        <a href="{{ url_for('lista_livros') }}" class="menu-btn">Voltar para Lista</a>
     </form>
 </body>
 </html>

@@ -8,6 +8,7 @@ app = Flask(__name__)
 def home():
     return render_template("index.html")
 
+
 # ===== Rota Cadastrar Livro =====
 @app.route("/cadastrar", methods=["GET", "POST"])
 def cadastrar():
@@ -18,15 +19,18 @@ def cadastrar():
         genero = request.form.get("genero", "").strip()
         quantidade_str = request.form.get("quantidade", "0").strip()
         observacao = request.form.get("observacao", "").strip()
+        estrela_str = request.form.get("estrela", "0").strip()
+        estrela = int(estrela_str) if estrela_str.isdigit() else 0
 
         if not (titulo and autor and ano and genero and quantidade_str.isdigit()):
             return render_template("cadastrar.html", erro="Preencha todos os campos corretamente.")
 
         quantidade = int(quantidade_str)
-        cadastrar_livro(titulo, autor, ano, genero, quantidade, observacao)
+        cadastrar_livro(titulo, autor, ano, genero, quantidade, estrela, observacao)
         return redirect(url_for("lista_livros"))
 
     return render_template("cadastrar.html")
+
 
 # ===== Rota Editar Livro =====
 @app.route("/editar/<int:index>", methods=["GET", "POST"])
@@ -42,13 +46,21 @@ def editar(index):
             quantidade_str = request.form.get("quantidade", str(livro.quantidade)).strip()
             livro.observacao = request.form.get("observacao", livro.observacao).strip()
 
+            # Atualiza estrelas
+            estrela_str = request.form.get("estrela", str(livro.estrela)).strip()
+            if estrela_str.isdigit():
+                livro.estrela = int(estrela_str)
+
+            # Atualiza quantidade
             if quantidade_str.isdigit():
                 livro.quantidade = int(quantidade_str)
 
             return redirect(url_for("lista_livros"))
 
         return render_template("editar.html", livro=livro, index=index)
+
     return redirect(url_for("lista_livros"))
+
 
 # ===== Rota Remover Livro =====
 @app.route("/remover/<int:index>")
@@ -56,6 +68,7 @@ def remover(index):
     if 0 <= index < len(biblioteca):
         biblioteca.pop(index)
     return redirect(url_for("lista_livros"))
+
 
 # ===== Rota Lista de Livros =====
 @app.route("/livros")
@@ -66,6 +79,7 @@ def lista_livros():
     else:
         livros_filtrados = biblioteca
     return render_template("lista_livros.html", livros=livros_filtrados, busca=busca)
+
 
 if __name__ == "__main__":
     app.run(debug=True)

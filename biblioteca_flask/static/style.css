@@ -153,3 +153,55 @@ form input[name="busca"] {
 form button[type="submit"] {
     display: inline-block;
 }
+
+
+.rating {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+}
+
+.rating input {
+  display: none;
+}
+
+.rating label {
+  font-size: 2rem;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.rating input:checked ~ label,
+.rating label:hover,
+.rating label:hover ~ label {
+  color: gold;
+}
+
+.estrelas {
+  direction: rtl; /* inverte a ordem para seleção intuitiva */
+  display: inline-block;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 5px;
+  
+}
+
+.estrelas input {
+  display: none; /* esconde os radio buttons */
+}
+
+.estrelas label {
+  font-size: 2rem;
+  color: #ccc; /* cor padrão */
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.estrelas input:checked ~ label,
+.estrelas label:hover,
+.estrelas label:hover ~ label {
+  color: gold; /* estrelas selecionadas ficam douradas */
+}
+
+

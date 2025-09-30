@@ -23,7 +23,7 @@
     <ul>
         {% for livro in livros %}
         <li>
-            <strong>{{ livro.titulo }}</strong> | {{ livro.autor }} | {{ livro.ano }} | {{ livro.genero }} | Quantidade: {{ livro.quantidade }}
+            <strong>{{ livro.titulo }}</strong> | {{ livro.autor }} | {{ livro.ano }} | {{ livro.genero }} | {{ livro.estrela }} | Quantidade: {{ livro.quantidade }}
             {% if livro.observacao %} | Obs: {{ livro.observacao }} {% endif %}
 
             <div class="ul-btn-container">
@@ -37,4 +37,3 @@
     </ul>
 </body>
 </html>
-
